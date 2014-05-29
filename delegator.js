@@ -51,6 +51,7 @@
             var reg = new RegExp('(^|\\s+)' + type + '(\\s+|$)');
             function listener(e) {
                 var self = $(this),
+                    that = this,
                     args = self.data('event-' + type),
                     isStop = self.data('event-stop-propagation') && !!reg.test(self.data('event-stop-propagation').replace(/\s/g, '')),
                     handle;
@@ -64,7 +65,7 @@
 
                         if (handle) {
                             arg.unshift(e);
-                            handle.apply(this, arg);
+                            handle.apply(that, arg);
                         }
                         isStop && e.stopPropagation();
                     });
