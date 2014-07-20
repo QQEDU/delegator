@@ -62,3 +62,41 @@ Delegator
         alert(msg);
     });
 ```
+
+多事件路由
+---------
+
+可以路由多个自定义事件，以空格分割，例如：
+
+```html
+<div id="delegator-container">
+<p data-event-click="showAlert, hello&nbsp;world consoleLog, hello&nbsp;Tencent">点击我弹出hello world并在控制台打印hello Tencent</p>
+</div>
+```
+
+```javascript
+(new Delegator('#delegator-container'))
+    .on('click', 'showAlert', function (e, msg) {
+        alert(msg);
+    }).on('click', 'consoleLog', function (e, msg) {
+        console.log(msg);
+    });
+```
+
+性能
+----
+
+请参考下面测试用例，基本是jQuery.on事件代理90%的效率，正常情况下，性能瓶颈不应出现在该组件：
+
+> http://jsperf.com/delegator-perf/4
+
+指南
+----
+
+简单的讲，是一种在节点上的事件路由机制，例如：
+
+* 我们可以将对A节点的click事件路由成clickA事件
+* 我们也可以将对一个Button的click事件路由成showAlert事件
+
+这样可以方便我们将事件语义化，避免class(表征节点表现)与事件耦合。
+
