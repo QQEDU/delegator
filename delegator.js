@@ -82,11 +82,10 @@
             var reg = new RegExp('(^|\\s+)' + type + '(\\s+|$)');
             function listener(e) {
                 var that = this,
-                    data = $.data,
-                    args = data(that, 'event-' + type + 'args'),
+                    args = $.data(that, 'event-' + type + 'args'),
                     isStop, handle;
                 !args &&
-                    (args = data(that, 'event-' + type)) &&
+                    (args = that.getAttribute('data-event-' + type)) &&
                         (args = args.replace(/\s*,\s*/g, $.expando)) &&
                             (args = args.split(' ')) &&
                                 $.each(args, function (i, arg) {
@@ -94,19 +93,22 @@
                                         arg = [arg[0], arg];
                                         args[i] = arg;
                                     }) &&
-                                        data(that, 'event-' + type + 'args', args);
+                                        $.data(that, 'event-' + type + 'args', args) &&
+                                            $.data(that, 'event-stop-propagation', that.getAttribute('event-stop-propagation'));
                 if (args) {
-                    $.each(args, function (i, arg) {
+                    var arg, handle;
+                    for (var i = 0, l = args.length; i < l; i++) {
+                        arg = args[i];
                         handle = listener.handleMap.get(arg[0]);
 
                         if (handle) {
                             arg[1][0] = e;
                             handle.apply(that, arg[1]);
                         }
-                        data(that, 'event-stop-propagation') &&
-                            !!reg.test(data(that, 'event-stop-propagation')) &&
+                        $.data(that, 'event-stop-propagation') &&
+                            !!reg.test($.data(that, 'event-stop-propagation')) &&
                                 e.stopPropagation();
-                    });
+                    }
                 }
             }
             listener.handleMap = new Map();
