@@ -81,12 +81,12 @@
             }
             var reg = new RegExp('(^|\\s+)' + type + '(\\s+|$)');
             function listener(e) {
-                var self = $(this),
-                    that = this,
-                    args = self.data('event-' + type + 'args'),
+                var that = this,
+                    data = $.data,
+                    args = data(that, 'event-' + type + 'args'),
                     isStop, handle;
                 !args &&
-                    (args = self.data('event-' + type)) &&
+                    (args = data(that, 'event-' + type)) &&
                         (args = args.replace(/\s*,\s*/g, $.expando)) &&
                             (args = args.split(' ')) &&
                                 $.each(args, function (i, arg) {
@@ -94,7 +94,7 @@
                                         arg = [arg[0], arg];
                                         args[i] = arg;
                                     }) &&
-                                        self.data('event-' + type + 'args', args);
+                                        data(that, 'event-' + type + 'args', args);
                 if (args) {
                     $.each(args, function (i, arg) {
                         handle = listener.handleMap.get(arg[0]);
@@ -103,8 +103,8 @@
                             arg[1][0] = e;
                             handle.apply(that, arg[1]);
                         }
-                        self.data('event-stop-propagation') &&
-                            !!reg.test(self.data('event-stop-propagation')) &&
+                        data(that, 'event-stop-propagation') &&
+                            !!reg.test(data(that, 'event-stop-propagation')) &&
                                 e.stopPropagation();
                     });
                 }
