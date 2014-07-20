@@ -3,6 +3,11 @@ Delegator
 
 > 基于jQuery的事件代理方案
 
+姐妹项目
+-------
+
+> https://github.com/miniflycn/delegator2
+
 入门
 -----
 
