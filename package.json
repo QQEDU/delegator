@@ -1,0 +1,27 @@
+{
+  "name": "delegator",
+  "version": "1.0.0",
+  "description": "基于jQuery的事件代理方案",
+  "main": "delegator.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/QQEDU/delegator.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/QQEDU/delegator/issues"
+  },
+  "homepage": "https://github.com/QQEDU/delegator",
+  "devDependencies": {
+    "chai": "*",
+    "jquery": "^1.9.1",
+    "mocha": "*"
+  }
+}

@@ -94,7 +94,7 @@
                                         args[i] = arg;
                                     }) &&
                                         $.data(that, 'event-' + type + 'args', args) &&
-                                            $.data(that, 'event-stop-propagation', that.getAttribute('event-stop-propagation'));
+                                            $.data(that, 'event-stop-propagation', that.getAttribute('data-event-stop-propagation'));
                 if (args) {
                     var arg, handle;
                     for (var i = 0, l = args.length; i < l; i++) {
