@@ -45,7 +45,6 @@ describe('delegator', function () {
                 // it should not be call
                 expect(false).to.be.a('string');
             }
-            done();
         });
         document.getElementById('test3').click();
     });

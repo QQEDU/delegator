@@ -1,12 +1,13 @@
 Delegator
 =========
+[![Build Status](https://travis-ci.org/QQEDU/delegator.svg?branch=master)](https://travis-ci.org/QQEDU/delegator)
 
 > 基于jQuery的事件代理方案
 
 姐妹项目
 -------
 
-> https://github.com/miniflycn/delegator2
+> https://github.com/QQEDU/delegator2
 
 入门
 -----
